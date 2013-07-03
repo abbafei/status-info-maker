@@ -1,4 +1,5 @@
-run.py executes a JSON specification from STDIN and processes the things in it and puts the output to stdout. It takes no parameters.
-repeat.py behaves the same as run.py, besides that it repeats what run.py does, every PARAM seconds. PARAM is giving as a command line parameter.
-The scripts in 'outputs' take a stream of JSON run/repeat.py'd
-(depending on the script) items from STDIN, formats them, and prints them to STDOUT. The STDOUT of these scripts can be used as input for the status bars, each using their respective Standard Input method (see http://i3wm.org/i3status/manpage.html sections 7 and 8, and http://i3wm.org/docs/userguide.html#status_command, for more info).
+Tools to work with streams of JSON objects specifying text to show, and optionally the colors to show it in.
+The stream format is: JSON arrays, one per line. The arrays contain objects with a "text" entry and an optional "color" entry.
+The inputs can be in other formats, to be processed by 'processors', as long as there is only one item per line.
+The scripts in 'processors' take input streams and manipulate 1)the items contained therein, 2)the way the items are combined.
+The scripts in 'outputs' take a properly-formatted input stream, or a processed stream, and output the information contained therein.
