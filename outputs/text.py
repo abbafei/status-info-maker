@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import json,sys
-for line in iter(sys.stdin.readline, ''):
-    sys.stdout.write(''.join([' | '.join(d['text'].strip() for d in json.loads(line) if d['text'].strip() != ''), '\n']))
-    sys.stdout.flush()
+import json
+import util
+
+util.outputter(lambda line: ''.join([' | '.join(d['text'].strip() for d in json.loads(line) if d['text'].strip() != ''), '\n']))
