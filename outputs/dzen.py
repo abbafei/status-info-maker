@@ -7,7 +7,7 @@ util.outputter(
         filter(lambda d: d['text'].strip() != '', json.loads(line)),
         quoter=lambda s: s.replace('^', '^^'),
         colorer=lambda c, s: ''.join(('^fg(', c, ')', s, '^fg()')),
-        connector=' ^fg(#ffffff)|^fg() ',
+        connector=' | ',
         quote_connectors=False,
     )
 )

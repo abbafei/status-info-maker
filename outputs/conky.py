@@ -8,7 +8,7 @@ util.outputter(
         filter(lambda d: d['text'].strip() != '', json.loads(line)),
         quoter=lambda s: s.replace('$', '$$'),
         colorer=lambda c, s: ''.join(('${color ', c, '}', s, '${color}')),
-        connector=' ${color #ffffff}|${color} ',
+        connector=' | ',
         quote_connectors=False,
     )
 )
