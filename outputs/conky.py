@@ -1,6 +1,14 @@
 #!/usr/bin/env python
-# to be used with conky execp
+# to be used with conky execp, for example: conky -t '${execp <command>}'
 import json
 import util
 
-util.outputter(lambda line: ''.join((''.join((''.join(('${color ', d['color'], '}', d['text'].replace('^', '^^'), '${color}')) if 'color' in d else d['text'].replace('$', '$$')) for d in json.loads(line)), '\n')))
+util.outputter(
+    lambda line: util.connect_dicts(
+        filter(lambda d: d['text'].strip() != '', json.loads(line)),
+        quoter=lambda s: s.replace('$', '$$'),
+        colorer=lambda c, s: ''.join(('${color ', c, '}', s, '${color}')),
+        connector=' ${color #ffffff}|${color} ',
+        quote_connectors=False,
+    )
+)

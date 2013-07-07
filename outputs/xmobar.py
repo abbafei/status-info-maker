@@ -2,4 +2,15 @@
 import json
 import util
 
-util.outputter(lambda line: ''.join(('}{', ''.join((''.join(('<fc=', d['color'], '>', d['text'], '</fc>')) if 'color' in d else d['text']) for d in json.loads(line)), '\n')))
+util.outputter(
+    lambda line: ''.join((
+        '}{',
+        util.connect_dicts(
+            filter(lambda d: d['text'].strip() != '', json.loads(line)),
+            quoter=lambda s: s.replace('$', '$$'),
+            colorer=lambda c, s: ''.join(('<fc=', c, '>', s, '</fc>')),
+            connector=' <fc=#ffffff>|</fc> ',
+            quote_connectors=False,
+        )
+    ))
+)

@@ -3,4 +3,12 @@
 import json
 import util
 
-util.outputter(lambda line: ''.join(['#[fg=white]|#[default]'.join(''.join(('#[fg=', d['color'], ']',  d['text'].strip(), '#[default]')) for d in json.loads(line) if d['text'].strip() != ''), '\n']))
+util.outputter(
+    lambda line: util.connect_dicts(
+        filter(lambda d: d['text'].strip() != '', json.loads(line)),
+        quoter=lambda s: s.replace('#', '##'),
+        colorer=lambda c, s: ''.join(('[#fg=', c, ']', s, '#[fg=default]')),
+        connector='#[fg=white]|#[fg=default]',
+        quote_connectors=False,
+    )
+)

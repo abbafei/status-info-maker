@@ -2,4 +2,8 @@
 import json
 import util
 
-util.outputter(lambda line: ''.join([' | '.join(d['text'].strip() for d in json.loads(line) if d['text'].strip() != ''), '\n']))
+util.outputter(
+    lambda line: util.connect_dicts(
+        filter(lambda d: d['text'].strip() != '', json.loads(line)),
+    )
+)
