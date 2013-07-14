@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # uses hebcal <http://danny.sadinoff.com/hebcal/>
-# can be run using a CGI server (for example busybox <http://busybox.net/> httpd -f -p 8000, or python <http://www.python.org/> -m CGIHTTPServer), and going to <http://localhost:8000/cgi-bin/run_html.sh>
+# can be run using a CGI server (for example busybox <http://busybox.net/> httpd -f -p 8000, or python <http://www.python.org/> -m CGIHTTPServer), and going to <http://localhost:8000/cgi-bin/[name_of_this_file]>
 D="$(dirname "$(dirname "$(readlink -f "$(dirname "$(which "$0" || echo "$0")")")")")"
 didir="$D"
 
